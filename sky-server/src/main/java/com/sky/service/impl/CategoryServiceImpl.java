@@ -62,7 +62,6 @@ public class CategoryServiceImpl implements CategoryService {
         Page<Category> page=categoryMapper.pageQuery(categoryPageQueryDTO);
         return new PageResult(page.getTotal(),page.getResult());
     }
-
     /**
      * 删除分类
      * @param id
@@ -80,7 +79,6 @@ public class CategoryServiceImpl implements CategoryService {
         }
         categoryMapper.deleteById(id);
     }
-
     /**
      * 修改分类
      * @param categoryDTO
@@ -92,7 +90,6 @@ public class CategoryServiceImpl implements CategoryService {
         category.setUpdateUser(BaseContext.getCurrentId());
         categoryMapper.update(category);
     }
-
     /**
      * 启用、禁用分类
      * @param status

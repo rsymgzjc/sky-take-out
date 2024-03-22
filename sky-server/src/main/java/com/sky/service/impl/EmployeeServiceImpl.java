@@ -66,7 +66,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         //3、返回实体对象
         return employee;
     }
-
     /**
      * 新增员工
      * @param employeeDTO
@@ -87,7 +86,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setUpdateUser(BaseContext.getCurrentId());
         employeeMapper.insert(employee);
     }
-
     /**
      * 分页查询
      * @param employeePageQueryDTO
@@ -101,7 +99,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         List<Employee> records =page.getResult();
         return new PageResult(total,records);
     }
-
     /**
      * 启用禁用员工账号
      * @param status
@@ -114,7 +111,6 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .build();
         employeeMapper.update(employee);
     }
-
     /**
      * 根据id查询员工信息
      * @param id
@@ -125,7 +121,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setPassword("****");
         return employee;
     }
-
     /**
      * 编辑员工信息
      * @param employeeDTO
