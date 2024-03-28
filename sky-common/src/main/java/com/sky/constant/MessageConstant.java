@@ -17,4 +17,5 @@ public class MessageConstant {
     public static final String DISH_BE_RELATED_BY_SETMEAL="当前菜品被套餐关联了，不能删除";
     public static final String SETMEAL_ON_SALE="套餐在售中";
     public static final String SETMEAL_ENABLE_FAILED="套餐起售失败";
+    public static final String LOGIN_FAILED="登录失败";
 }
