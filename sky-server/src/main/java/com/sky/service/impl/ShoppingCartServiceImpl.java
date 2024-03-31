@@ -12,6 +12,7 @@ import com.sky.service.SetmealService;
 import com.sky.service.ShoppingCartService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -79,5 +80,30 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
      */
     public void cleanShoppingCart() {
         shoppingCartMapper.deleteByUserId(BaseContext.getCurrentId());
+    }
+
+    /**
+     * 删除购物车的一个商品
+     * @param shoppingCartDTO
+     */
+    public void sub(ShoppingCartDTO shoppingCartDTO){
+        ShoppingCart shoppingCart=new ShoppingCart();
+        BeanUtils.copyProperties(shoppingCartDTO,shoppingCart);
+        shoppingCart.setUserId(BaseContext.getCurrentId());
+        List<ShoppingCart> list=shoppingCartMapper.List(shoppingCart);
+        if(list!=null&&list.size()>0){
+            shoppingCart = list.get(0);
+
+            Integer number = shoppingCart.getNumber();
+            if(number==1){
+                //当前商品在购物车中的份数为1，直接删除当前记录
+                shoppingCartMapper.deleteById(shoppingCart.getId());
+            }else {
+                //当前商品在购物车中的份数不为1，修改份数即可
+                shoppingCart.setNumber(shoppingCart.getNumber() - 1);
+                shoppingCartMapper.updateNumberById(shoppingCart);
+            }
+
+        }
     }
 }
